@@ -34,7 +34,7 @@ class TextfieldFormatter extends HTMLElement {
   private configuration: any;
   private valueChangeEvent: string = 'input';
   private cursorTracker?: CursorTrackerDestructor;
-  private el?: HTMLInputElement | null = null;
+  private el?: HTMLInputElement | null = null; // input element
   private formatType: 'creditCard' | 'general' | 'numeral' | 'date'  | 'time' = 'creditCard';
 
   connectedCallback() {
@@ -53,25 +53,29 @@ class TextfieldFormatter extends HTMLElement {
   }
 
   creditTypeChanged() {
+    const _this = this;
+
     return (e: Event) => {
       const value = (e.target as HTMLInputElement).value;
       const creditCardType = getCreditCardType(value);
-      (this as any).$server.onCreditCardChanged(creditCardType);
+      (_this as any).$server.onCreditCardChanged(creditCardType);
     };
   }
 
   inputChanged() {
+    const _this = this;
+
     return (e: Event) => {
       const value = (e.target as HTMLInputElement).value;
       const formattedValue = this.formatValue(value);
 
-      (this.parentElement as any).value = formattedValue;
+      (_this.parentElement as any).value = formattedValue;
       if (formattedValue) {
         this.el!.value = formattedValue;
       }
-      (this.parentElement as any)._onChange(e);
+      (_this.parentElement as any)._onChange(e);
 
-    };
+    }
   }
 
   formatValue(value: string) {
@@ -97,10 +101,12 @@ class TextfieldFormatter extends HTMLElement {
   }
 
   inputValueChanged() {
+    const _this = this;
+
     return (e: Event) => {
       const value = (e.target as HTMLInputElement).value;
       const formattedValue = this.formatValue(value);
-      (this.parentElement as any).value = formattedValue;
+      (_this.parentElement as any).value = formattedValue;
       // should work specifically for the credit card
       if (stripDelimiters(value, DefaultCreditCardDelimiter) !== unformatCreditCard(formattedValue)) {
         console.error('Value has been striped');
@@ -111,7 +117,7 @@ class TextfieldFormatter extends HTMLElement {
   updateConf(configuration: any, formatType: 'creditCard' | 'general' | 'numeral' | 'date'  | 'time') {
     this.formatType = formatType;
     this.configuration = configuration;
-    console.error('updateConf ' + this.configuration);
+    console.log('CleaveZenFormatter: updateConf'); console.log(this.configuration);
     if (this.cursorTracker) {
       this.cursorTracker()
     }
@@ -119,7 +125,7 @@ class TextfieldFormatter extends HTMLElement {
   }
   updateValueChangeEvent(valueChangeEvent: string) {
     this.valueChangeEvent = valueChangeEvent;
-    console.error('updateValueChangeEvent' + this.valueChangeEvent);
+    console.log('CleaveZenFormatter: updateValueChangeEvent'); console.log(this.valueChangeEvent);
   }
 
   disconnectedCallback() {
