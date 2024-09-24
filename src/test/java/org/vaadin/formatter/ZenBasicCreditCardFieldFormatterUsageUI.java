@@ -1,11 +1,12 @@
-package org.vaadin.textfieldformatter;
-
-import org.vaadin.formatter.ZenCreditCardFieldFormatter;
+package org.vaadin.formatter;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
+import org.vaadin.textfieldformatter.AbstractTest;
+import org.vaadin.textfieldformatter.UITestConfiguration;
 
+// tests passed
 public class ZenBasicCreditCardFieldFormatterUsageUI extends AbstractTest {
 
 	@Override
