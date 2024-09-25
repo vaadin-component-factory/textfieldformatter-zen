@@ -1,5 +1,8 @@
 package org.vaadin.textfieldformatter;
 
+import com.vaadin.flow.component.HasValue;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.notification.Notification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,6 +58,15 @@ public abstract class AbstractTest extends VerticalLayout implements HasUrlParam
 		setContentSize(this);
 		add(component);
 		setFlexGrow(1, component);
+
+		if (component instanceof HasSize) {
+			((HasSize) component).setWidthFull();
+		}
+
+		if (component instanceof HasValue) {
+			Button showServerValueBtn = new Button("Show Server Value", e -> Notification.show("Value: " + ((HasValue) component).getValue()));
+			add(showServerValueBtn);
+		}
 	}
 
 	/**
