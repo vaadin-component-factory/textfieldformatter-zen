@@ -1,16 +1,16 @@
 package org.vaadin.formatter;
 
-import org.vaadin.formatter.conf.CleaveZenExtension;
 import org.vaadin.formatter.conf.FormatGeneralOptions;
-import org.vaadin.textfieldformatter.CustomStringBlockFormatter;
-import org.vaadin.textfieldformatter.IBANFormatter;
 
 import java.util.Arrays;
 
-public class ZenIBANFormatter extends CustomStringBlockFormatter {
+public class ZenIBANFormatter extends ZenCustomStringBlockFormatter {
 
     public ZenIBANFormatter(int[] blocks) {
-        super(blocks, null, CustomStringBlockFormatter.ForceCase.UPPER, null, false);
+        super(blocks, null, ZenCustomStringBlockFormatter.ForceCase.UPPER, null, false);
+
+        // delimiter must be specified otherwise blocking won't work
+        this.getConfiguration().delimiters = new String[] {" "};
     }
 
     public static ZenIBANFormatter fromIBANLength(int length) {
