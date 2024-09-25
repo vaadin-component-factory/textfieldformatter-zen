@@ -69,9 +69,9 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("12233abcd");
 		Assert.assertEquals("1-22-33A", tf.getValue());
-		$(ButtonElement.class).first().click();
+		$(ButtonElement.class).withId("switch").first().click();
 		Assert.assertEquals("1-*22", tf.getValue());
-		tf.clear();
+		tf.setValue("");
 		tf.sendKeys("12233abcd");
 		Assert.assertEquals("12*23", tf.getValue());
 	}
