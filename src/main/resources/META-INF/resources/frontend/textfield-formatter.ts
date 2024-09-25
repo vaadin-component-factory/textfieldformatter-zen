@@ -85,9 +85,9 @@ class TextfieldFormatter extends HTMLElement {
 
   private creditTypeChanged = (e: Event) => {
     // ignore event if format type is not credit card
-    // if (this.formatType != 'creditCard') {
-    //   return;
-    // }
+    if (this.formatType != 'creditCard') {
+      return;
+    }
 
     console.log(this.logPrefix + 'creditTypeChanged'); console.log(e);
     const value = (e.target as HTMLInputElement).value;
