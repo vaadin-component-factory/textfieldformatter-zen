@@ -24,6 +24,8 @@ public class MainView extends HorizontalLayout implements RouterLayout {
 		menu = new VerticalLayout();
 		menu.setSpacing(true);
 		menu.setMargin(true);
+		menu.setHeightFull();
+		menu.getStyle().set("overflow", "auto");
 		setSizeFull();
 		add(menu);
 
