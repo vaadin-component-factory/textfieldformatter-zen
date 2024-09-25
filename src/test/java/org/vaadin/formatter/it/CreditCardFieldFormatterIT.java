@@ -18,9 +18,14 @@ public class CreditCardFieldFormatterIT extends AbstractCustomTestBenchTestCase 
 	public void validVisaNumber() throws InterruptedException {
 		openUI(ZenBasicCreditCardFieldFormatterUsageUI.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
-		tf.sendKeys("4");
+
 		NotificationElement notification = $(NotificationElement.class).onPage().first();
+		Assert.assertEquals("GENERAL", notification.getText());
+
+		tf.sendKeys("4");
+		notification = $(NotificationElement.class).onPage().get(1);
 		Assert.assertEquals("VISA", notification.getText());
+
 		tf.sendKeys("000000000000000");
 		Assert.assertEquals("4000 0000 0000 0000", tf.getValue());
 		tf.sendKeys("23445");
