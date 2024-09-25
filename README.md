@@ -16,4 +16,4 @@ Supports credit card formatting and custom blocks e.g. IBAN.
 ## If you want to run the project 
 
 1. Import this maven project to your favourite IDE
-2. Run jetty:run, navigate to localhost:8080, and select any of the test UI links
+2. Run `mvn -Pdevelopment jetty:run`, navigate to localhost:8080, and select any of the test UI links
