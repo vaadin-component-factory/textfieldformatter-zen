@@ -7,7 +7,6 @@ import org.vaadin.textfieldformatter.AbstractTest;
 import org.vaadin.textfieldformatter.RouteParams;
 import org.vaadin.textfieldformatter.UITestConfiguration;
 
-// test passed
 @RouteParams({ ZenBasicIBANFormatterUsageUI.BasicIBAN.class, ZenBasicIBANFormatterUsageUI.ReplaceIBAN.class })
 public class ZenBasicIBANFormatterUsageUI extends AbstractTest {
 

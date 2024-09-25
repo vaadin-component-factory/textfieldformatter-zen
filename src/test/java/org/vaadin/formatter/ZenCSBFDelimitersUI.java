@@ -6,7 +6,6 @@ import org.vaadin.textfieldformatter.AbstractTest;
 import org.vaadin.textfieldformatter.RouteParams;
 import org.vaadin.textfieldformatter.UITestConfiguration;
 
-// test passed
 @RouteParams({ ZenCSBFDelimitersUI.LazyDelimiter.class })
 public class ZenCSBFDelimitersUI extends AbstractTest {
 

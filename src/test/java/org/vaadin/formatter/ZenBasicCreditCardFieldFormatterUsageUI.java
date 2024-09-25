@@ -6,7 +6,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import org.vaadin.textfieldformatter.AbstractTest;
 import org.vaadin.textfieldformatter.UITestConfiguration;
 
-// tests passed
 public class ZenBasicCreditCardFieldFormatterUsageUI extends AbstractTest {
 
 	@Override
@@ -16,7 +15,6 @@ public class ZenBasicCreditCardFieldFormatterUsageUI extends AbstractTest {
 		ZenCreditCardFieldFormatter formatter = new ZenCreditCardFieldFormatter();
 		formatter.extend(tf);
 		formatter.addCreditCardChangedListener(l -> Notification.show("" + l.getCreditCardType()));
-		//tf.addValueChangeListener(e -> Notification.show("Value: " + e.getValue()));
 		return tf;
 	}
 
