@@ -37,6 +37,8 @@ public abstract class CleaveZenExtension<CONF extends AbstractCleaveZenConfigura
 	private void extend(Component component, UI ui) {
 		extended = new WeakReference<>(component);
 		component.getElement().appendChild(getElement());
+
+		// update client-side change listener that handles formatting
 		if (component instanceof HasValueChangeMode) {
 			getElement().executeJs("$0.updateValueChangeEvent($1);", this,
 					ValueChangeMode.eventForMode(
@@ -44,6 +46,8 @@ public abstract class CleaveZenExtension<CONF extends AbstractCleaveZenConfigura
 							"input")
 			);
 		}
+
+		// update client-side cleave js config
 		getElement().executeJs("$0.updateConf($1, $2);", this, getConfiguration().toJson(), getConfiguration().getFormatType());
 	}
 

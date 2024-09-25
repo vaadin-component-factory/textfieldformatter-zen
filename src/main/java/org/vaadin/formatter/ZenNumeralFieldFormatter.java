@@ -3,7 +3,6 @@ package org.vaadin.formatter;
 import com.vaadin.flow.component.textfield.TextField;
 import org.vaadin.formatter.conf.CleaveZenExtension;
 import org.vaadin.formatter.conf.FormatNumeralOptions;
-import org.vaadin.textfieldformatter.CleaveExtension;
 
 public class ZenNumeralFieldFormatter extends CleaveZenExtension<FormatNumeralOptions> {
 
@@ -130,7 +129,6 @@ public class ZenNumeralFieldFormatter extends CleaveZenExtension<FormatNumeralOp
 	public ZenNumeralFieldFormatter(String delimiter, String decimalMark, int integerScale, int decimalScale,
                                     boolean nonNegativeOnly, ThousandsGroupStyle thousandsGroupStyle, boolean signBeforePrefix,
                                     boolean stripLeadingZeroes, String prefix, boolean addPrefixAsPostfix) {
-		// todo ? getConfiguration().numeral = true;
 		getConfiguration().delimiter = delimiter;
 		getConfiguration().numeralDecimalMark = decimalMark;
 		if (integerScale != DEFAULT_INTEGER_SCALE_UNDEFINED) {
