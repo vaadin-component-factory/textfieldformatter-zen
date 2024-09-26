@@ -4,12 +4,12 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import org.vaadin.formatter.ZenNumeralFieldFormatterUI.*;
+import org.vaadin.formatter.NumeralFieldFormatterUI.*;
 
 @RouteParams({ DefaultValues.class, CustomValue.class, ThousandsGroupThousand.class, ThousandsGroupLakh.class,
         ThousandsGroupWan.class, ThousandsGroupNone.class, IntegerScale.class, DecimalScale.class, DecimalMark.class,
         PositiveOnly.class, SignBeforePrefix.class, Postfix.class, DontStripLeadingZeroes.class })
-public class ZenNumeralFieldFormatterUI extends AbstractTest {
+public class NumeralFieldFormatterUI extends AbstractTest {
 
     @Override
     public Component getTestComponent(UITestConfiguration configuration) {
@@ -21,7 +21,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter().extend(tf);
+            new NumeralFieldFormatter().extend(tf);
             tf.addValueChangeListener(l -> Notification.show("Value: " + l.getValue()));
             return tf;
         }
@@ -33,7 +33,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().delimiter(" ").decimalMark(",").decimalScale(3).prefix("€")
+            new NumeralFieldFormatter.Builder().delimiter(" ").decimalMark(",").decimalScale(3).prefix("€")
                     .signBeforePrefix(true).build().extend(tf);
             return tf;
         }
@@ -45,7 +45,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().thousandsGroupStyle(ZenNumeralFieldFormatter.ThousandsGroupStyle.THOUSAND).build().extend(tf);
+            new NumeralFieldFormatter.Builder().thousandsGroupStyle(NumeralFieldFormatter.ThousandsGroupStyle.THOUSAND).build().extend(tf);
             return tf;
         }
 
@@ -56,7 +56,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().thousandsGroupStyle(ZenNumeralFieldFormatter.ThousandsGroupStyle.LAKH).build().extend(tf);
+            new NumeralFieldFormatter.Builder().thousandsGroupStyle(NumeralFieldFormatter.ThousandsGroupStyle.LAKH).build().extend(tf);
             return tf;
         }
 
@@ -67,7 +67,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().thousandsGroupStyle(ZenNumeralFieldFormatter.ThousandsGroupStyle.WAN).build().extend(tf);
+            new NumeralFieldFormatter.Builder().thousandsGroupStyle(NumeralFieldFormatter.ThousandsGroupStyle.WAN).build().extend(tf);
             return tf;
         }
 
@@ -78,7 +78,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().thousandsGroupStyle(ZenNumeralFieldFormatter.ThousandsGroupStyle.NONE).build().extend(tf);
+            new NumeralFieldFormatter.Builder().thousandsGroupStyle(NumeralFieldFormatter.ThousandsGroupStyle.NONE).build().extend(tf);
             return tf;
         }
 
@@ -89,7 +89,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().integerScale(5).decimalScale(2).build().extend(tf);
+            new NumeralFieldFormatter.Builder().integerScale(5).decimalScale(2).build().extend(tf);
             return tf;
         }
 
@@ -100,7 +100,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter(".", ",", 6).extend(tf);
+            new NumeralFieldFormatter(".", ",", 6).extend(tf);
             return tf;
         }
 
@@ -111,7 +111,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().decimalMark(",").build().extend(tf);
+            new NumeralFieldFormatter.Builder().decimalMark(",").build().extend(tf);
             return tf;
         }
 
@@ -122,7 +122,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().nonNegativeOnly(true).build().extend(tf);
+            new NumeralFieldFormatter.Builder().nonNegativeOnly(true).build().extend(tf);
             return tf;
         }
 
@@ -133,7 +133,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().prefix("€").signBeforePrefix(true).build().extend(tf);
+            new NumeralFieldFormatter.Builder().prefix("€").signBeforePrefix(true).build().extend(tf);
             return new VerticalLayout(tf, new TextField("Here"));
         }
 
@@ -144,7 +144,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().prefix("€", true).build().extend(tf);
+            new NumeralFieldFormatter.Builder().prefix("€", true).build().extend(tf);
             return tf;
         }
 
@@ -155,7 +155,7 @@ public class ZenNumeralFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            new ZenNumeralFieldFormatter.Builder().stripLeadingZeroes(false).build().extend(tf);
+            new NumeralFieldFormatter.Builder().stripLeadingZeroes(false).build().extend(tf);
             return tf;
         }
 

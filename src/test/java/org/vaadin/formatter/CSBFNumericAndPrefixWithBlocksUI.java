@@ -1,13 +1,13 @@
 package org.vaadin.formatter;
 
-import org.vaadin.formatter.ZenCustomStringBlockFormatter.Options;
-import org.vaadin.formatter.ZenCustomStringBlockFormatter.ForceCase;
+import org.vaadin.formatter.CustomStringBlockFormatter.Options;
+import org.vaadin.formatter.CustomStringBlockFormatter.ForceCase;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.textfield.TextField;
 
 // issues: prefix is not visible initially (only after typing)
-public class ZenCSBFNumericAndPrefixWithBlocksUI extends AbstractTest {
+public class CSBFNumericAndPrefixWithBlocksUI extends AbstractTest {
 
 	@Override
 	public Component getTestComponent(UITestConfiguration configuration) {
@@ -18,7 +18,7 @@ public class ZenCSBFNumericAndPrefixWithBlocksUI extends AbstractTest {
 		fmtOptions.setForceCase(ForceCase.NONE);
 		fmtOptions.setNumericOnly(true);
 		fmtOptions.setPrefix("PREFIX:");
-		ZenCustomStringBlockFormatter formatter = new ZenCustomStringBlockFormatter(fmtOptions);
+		CustomStringBlockFormatter formatter = new CustomStringBlockFormatter(fmtOptions);
 		formatter.extend(tf);
 		return tf;
 	}

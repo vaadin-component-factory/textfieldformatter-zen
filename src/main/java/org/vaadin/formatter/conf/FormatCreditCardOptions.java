@@ -3,7 +3,7 @@ package org.vaadin.formatter.conf;
 import elemental.json.Json;
 import elemental.json.JsonObject;
 
-public class FormatCreditCardOptions extends AbstractCleaveZenConfiguration {
+public class FormatCreditCardOptions extends AbstractCleaveConfiguration {
     public Boolean creditCardStrictMode;
     public String delimiter;
     public Boolean delimiterLazyShow;

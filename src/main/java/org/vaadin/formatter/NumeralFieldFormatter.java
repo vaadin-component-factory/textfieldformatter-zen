@@ -1,10 +1,10 @@
 package org.vaadin.formatter;
 
 import com.vaadin.flow.component.textfield.TextField;
-import org.vaadin.formatter.conf.CleaveZenExtension;
+import org.vaadin.formatter.conf.CleaveExtension;
 import org.vaadin.formatter.conf.FormatNumeralOptions;
 
-public class ZenNumeralFieldFormatter extends CleaveZenExtension<FormatNumeralOptions> {
+public class NumeralFieldFormatter extends CleaveExtension<FormatNumeralOptions> {
 
 	public static String DEFAULT_DELIMITER = ",";
 	public static int DEFAULT_DECIMAL_SCALE = 2;
@@ -49,7 +49,7 @@ public class ZenNumeralFieldFormatter extends CleaveZenExtension<FormatNumeralOp
 	 * Creates a TextFieldFormatter for numeral fields. By default has delimiter ','
 	 * and decimal mark '.'. Integer scale is not limited and shows 2 decimals.
 	 */
-	public ZenNumeralFieldFormatter() {
+	public NumeralFieldFormatter() {
 		this(DEFAULT_DELIMITER, DEFAULT_DECIMAL_MARK, DEFAULT_INTEGER_SCALE_UNDEFINED, DEFAULT_DECIMAL_SCALE, false);
 	}
 
@@ -58,7 +58,7 @@ public class ZenNumeralFieldFormatter extends CleaveZenExtension<FormatNumeralOp
 		return new FormatNumeralOptions();
 	}
 
-	public ZenNumeralFieldFormatter(String delimiter, String decimalMark, int decimalScale) {
+	public NumeralFieldFormatter(String delimiter, String decimalMark, int decimalScale) {
 		this(delimiter, decimalMark, DEFAULT_INTEGER_SCALE_UNDEFINED, decimalScale, false);
 	}
 
@@ -73,8 +73,8 @@ public class ZenNumeralFieldFormatter extends CleaveZenExtension<FormatNumeralOp
 	 * @param nonNegativeOnly True: allow only non-negative numbers. False: Allow
 	 *                        negative, 0 and positive.
 	 */
-	public ZenNumeralFieldFormatter(String delimiter, String decimalMark, int integerScale, int decimalScale,
-                                    boolean nonNegativeOnly) {
+	public NumeralFieldFormatter(String delimiter, String decimalMark, int integerScale, int decimalScale,
+								 boolean nonNegativeOnly) {
 		this(delimiter, decimalMark, integerScale, decimalScale, nonNegativeOnly, DEFAULT_THOUSANDS_GROUP_STYLE,
 				DEFAULT_SIGN_BEFORE_PREFIX, DEFAULT_STRIP_LEADING_ZEROES, DEFAULT_NO_PREFIX, DEFAULT_TAIL_PREFIX);
 	}
@@ -98,9 +98,9 @@ public class ZenNumeralFieldFormatter extends CleaveZenExtension<FormatNumeralOp
 	 *                            number should be stripped out. Default true.
 	 * @param prefix              Prefix e.g. $. Default no prefix.
 	 */
-	public ZenNumeralFieldFormatter(String delimiter, String decimalMark, int integerScale, int decimalScale,
-                                    boolean nonNegativeOnly, ThousandsGroupStyle thousandsGroupStyle, boolean signBeforePrefix,
-                                    boolean stripLeadingZeroes, String prefix) {
+	public NumeralFieldFormatter(String delimiter, String decimalMark, int integerScale, int decimalScale,
+								 boolean nonNegativeOnly, ThousandsGroupStyle thousandsGroupStyle, boolean signBeforePrefix,
+								 boolean stripLeadingZeroes, String prefix) {
 		this(delimiter, decimalMark, integerScale, decimalScale, nonNegativeOnly, thousandsGroupStyle, signBeforePrefix,
 				stripLeadingZeroes, prefix, DEFAULT_TAIL_PREFIX);
 	}
@@ -126,9 +126,9 @@ public class ZenNumeralFieldFormatter extends CleaveZenExtension<FormatNumeralOp
 	 * @param addPrefixAsPostfix  Shows the prefix as postfix/suffix (after the
 	 *                            numeral).
 	 */
-	public ZenNumeralFieldFormatter(String delimiter, String decimalMark, int integerScale, int decimalScale,
-                                    boolean nonNegativeOnly, ThousandsGroupStyle thousandsGroupStyle, boolean signBeforePrefix,
-                                    boolean stripLeadingZeroes, String prefix, boolean addPrefixAsPostfix) {
+	public NumeralFieldFormatter(String delimiter, String decimalMark, int integerScale, int decimalScale,
+								 boolean nonNegativeOnly, ThousandsGroupStyle thousandsGroupStyle, boolean signBeforePrefix,
+								 boolean stripLeadingZeroes, String prefix, boolean addPrefixAsPostfix) {
 		getConfiguration().delimiter = delimiter;
 		getConfiguration().numeralDecimalMark = decimalMark;
 		if (integerScale != DEFAULT_INTEGER_SCALE_UNDEFINED) {
@@ -223,8 +223,8 @@ public class ZenNumeralFieldFormatter extends CleaveZenExtension<FormatNumeralOp
 			return this;
 		}
 
-		public ZenNumeralFieldFormatter build() {
-			return new ZenNumeralFieldFormatter(delimiter, decimalMark, integerScale, decimalScale, nonNegativeOnly,
+		public NumeralFieldFormatter build() {
+			return new NumeralFieldFormatter(delimiter, decimalMark, integerScale, decimalScale, nonNegativeOnly,
 					thousandsGroupStyle, signBeforePrefix, stripLeadingZeroes, prefix, tailPrefix);
 		}
 	}

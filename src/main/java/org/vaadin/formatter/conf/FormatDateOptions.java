@@ -3,7 +3,7 @@ package org.vaadin.formatter.conf;
 import elemental.json.Json;
 import elemental.json.JsonObject;
 
-public class FormatDateOptions extends AbstractCleaveZenConfiguration {
+public class FormatDateOptions extends AbstractCleaveConfiguration {
 
     public String[] datePattern;
     public String dateMax;

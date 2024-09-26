@@ -1,19 +1,17 @@
 package org.vaadin.formatter;
 
-import org.vaadin.formatter.conf.FormatGeneralOptions;
-
 import java.util.Arrays;
 
-public class ZenIBANFormatter extends ZenCustomStringBlockFormatter {
+public class IBANFormatter extends CustomStringBlockFormatter {
 
-    public ZenIBANFormatter(int[] blocks) {
-        super(blocks, null, ZenCustomStringBlockFormatter.ForceCase.UPPER, null, false);
+    public IBANFormatter(int[] blocks) {
+        super(blocks, null, CustomStringBlockFormatter.ForceCase.UPPER, null, false);
 
         // delimiter must be specified otherwise blocking won't work
         this.getConfiguration().delimiters = new String[] {" "};
     }
 
-    public static ZenIBANFormatter fromIBANLength(int length) {
+    public static IBANFormatter fromIBANLength(int length) {
         int num4s = length / 4;
         int lastBlock = length % 4;
         int[] blocks = null;
@@ -25,6 +23,6 @@ public class ZenIBANFormatter extends ZenCustomStringBlockFormatter {
             blocks = new int[num4s];
             Arrays.fill(blocks, 4);
         }
-        return new ZenIBANFormatter(blocks) ;
+        return new IBANFormatter(blocks) ;
     }
 }

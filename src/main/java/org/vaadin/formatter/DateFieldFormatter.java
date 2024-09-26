@@ -1,13 +1,13 @@
 package org.vaadin.formatter;
 
 import com.vaadin.flow.component.textfield.TextField;
-import org.vaadin.formatter.conf.CleaveZenExtension;
+import org.vaadin.formatter.conf.CleaveExtension;
 import org.vaadin.formatter.conf.FormatDateOptions;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class ZenDateFieldFormatter extends CleaveZenExtension<FormatDateOptions> {
+public class DateFieldFormatter extends CleaveExtension<FormatDateOptions> {
 
     /**
      * Creates a field for date input formatting. Day and month must have the
@@ -23,7 +23,7 @@ public class ZenDateFieldFormatter extends CleaveZenExtension<FormatDateOptions>
      *                    date.Default null.
      * @param delimiter   Custom delimiter for the values. Default "/".
      */
-    public ZenDateFieldFormatter(String datePattern, LocalDate dateMin, LocalDate dateMax, String delimiter) {
+    public DateFieldFormatter(String datePattern, LocalDate dateMin, LocalDate dateMax, String delimiter) {
 
         String pattern = datePattern.replace("yyyy", "Y");
         pattern = pattern.replace("yy", "y");
@@ -115,8 +115,8 @@ public class ZenDateFieldFormatter extends CleaveZenExtension<FormatDateOptions>
             return this;
         }
 
-        public ZenDateFieldFormatter build() {
-            return new ZenDateFieldFormatter(datePattern, dateMin, dateMax, delimiter);
+        public DateFieldFormatter build() {
+            return new DateFieldFormatter(datePattern, dateMin, dateMax, delimiter);
         }
     }
 }

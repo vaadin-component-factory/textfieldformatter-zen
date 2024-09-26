@@ -5,7 +5,7 @@ import com.vaadin.flow.component.textfield.testbench.TextFieldElement;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.vaadin.formatter.ZenBasicCreditCardFieldFormatterUsageUI;
+import org.vaadin.formatter.BasicCreditCardFieldFormatterUsageUI;
 
 public class CreditCardFieldFormatterIT extends AbstractCustomTestBenchTestCase {
 
@@ -16,7 +16,7 @@ public class CreditCardFieldFormatterIT extends AbstractCustomTestBenchTestCase 
 
 	@Test
 	public void validVisaNumber() throws InterruptedException {
-		openUI(ZenBasicCreditCardFieldFormatterUsageUI.class);
+		openUI(BasicCreditCardFieldFormatterUsageUI.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 
 		NotificationElement notification = $(NotificationElement.class).onPage().first();

@@ -2,12 +2,12 @@ package org.vaadin.formatter;
 
 import java.util.ArrayList;
 
-import org.vaadin.formatter.conf.CleaveZenExtension;
+import org.vaadin.formatter.conf.CleaveExtension;
 import org.vaadin.formatter.conf.FormatGeneralOptions;
 
 import com.vaadin.flow.component.textfield.TextField;
 
-public class ZenCustomStringBlockFormatter extends CleaveZenExtension<FormatGeneralOptions> {
+public class CustomStringBlockFormatter extends CleaveExtension<FormatGeneralOptions> {
 
 	/**
 	 * Creates an instance of CustomStringBlockFormatter. Call extend to attach this
@@ -26,8 +26,8 @@ public class ZenCustomStringBlockFormatter extends CleaveZenExtension<FormatGene
 	 * @param numericOnly true for allowing numeric characters only. Defaults to
 	 *                    false.
 	 */
-	public ZenCustomStringBlockFormatter(int[] blocks, String[] delimiters, ForceCase forceCase, String prefix,
-										 boolean numericOnly) {
+	public CustomStringBlockFormatter(int[] blocks, String[] delimiters, ForceCase forceCase, String prefix,
+									  boolean numericOnly) {
 		this(blocks, delimiters, false, forceCase, prefix, true, numericOnly);
 	}
 
@@ -52,13 +52,13 @@ public class ZenCustomStringBlockFormatter extends CleaveZenExtension<FormatGene
 	 * @param numericOnly           true for allowing numeric characters only.
 	 *                              Defaults to false.
 	 */
-	public ZenCustomStringBlockFormatter(int[] blocks, String[] delimiters, ForceCase forceCase, String prefix,
-										 boolean showPrefixImmediately, boolean numericOnly) {
+	public CustomStringBlockFormatter(int[] blocks, String[] delimiters, ForceCase forceCase, String prefix,
+									  boolean showPrefixImmediately, boolean numericOnly) {
 		this(blocks, delimiters, false, forceCase, prefix, showPrefixImmediately, numericOnly);
 	}
 
-	private ZenCustomStringBlockFormatter(int[] blocks, String[] delimiters, boolean lazyDelimiter, ForceCase forceCase,
-										  String prefix, boolean showPrefixImmediately, boolean numericOnly) {
+	private CustomStringBlockFormatter(int[] blocks, String[] delimiters, boolean lazyDelimiter, ForceCase forceCase,
+									   String prefix, boolean showPrefixImmediately, boolean numericOnly) {
 		getConfiguration().blocks = blocks;
 		getConfiguration().delimiters = delimiters;
 		getConfiguration().delimiterLazyShow = lazyDelimiter;
@@ -74,7 +74,7 @@ public class ZenCustomStringBlockFormatter extends CleaveZenExtension<FormatGene
 		getConfiguration().numericOnly = numericOnly;
 	}
 
-	public ZenCustomStringBlockFormatter(Options options) {
+	public CustomStringBlockFormatter(Options options) {
 		this(options.blocks, options.delimiters, options.lazyDelimiter, options.forceCase, options.prefix,
 				options.showPrefixImmediately, options.numericOnly);
 	}
@@ -226,8 +226,8 @@ public class ZenCustomStringBlockFormatter extends CleaveZenExtension<FormatGene
 			return this;
 		}
 
-		public ZenCustomStringBlockFormatter build() {
-			return new ZenCustomStringBlockFormatter(buildOptions());
+		public CustomStringBlockFormatter build() {
+			return new CustomStringBlockFormatter(buildOptions());
 		}
 
 		public Options buildOptions() {

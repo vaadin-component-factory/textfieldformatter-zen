@@ -3,7 +3,7 @@ package org.vaadin.formatter.conf;
 import elemental.json.Json;
 import elemental.json.JsonObject;
 
-public class FormatNumeralOptions extends AbstractCleaveZenConfiguration {
+public class FormatNumeralOptions extends AbstractCleaveConfiguration {
 
 
     public String delimiter;

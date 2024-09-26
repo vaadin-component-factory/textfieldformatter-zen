@@ -3,19 +3,19 @@ package org.vaadin.formatter;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
-import org.vaadin.formatter.ZenDateFieldFormatterUI.*;
+import org.vaadin.formatter.DateFieldFormatterUI.*;
 
 import java.time.LocalDate;
 
 @RouteParams({ Max.class, Min.class, MinMax.class, FinnishDate.class, AmericanDate.class, MonthYear.class })
-public class ZenDateFieldFormatterUI extends AbstractTest {
+public class DateFieldFormatterUI extends AbstractTest {
 
     public static class Max extends UITestConfiguration {
 
         @Override
         public Component getTestComponent() {
             TextField field = new TextField("Date before Feb 3, 2019");
-            new ZenDateFieldFormatter.Builder().dateMax(LocalDate.of(2019, 2, 3)).build().extend(field);
+            new DateFieldFormatter.Builder().dateMax(LocalDate.of(2019, 2, 3)).build().extend(field);
             return field;
         }
     }
@@ -25,7 +25,7 @@ public class ZenDateFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField field = new TextField("Date after Feb 3, 2019");
-            new ZenDateFieldFormatter.Builder().dateMin(LocalDate.of(2019, 2, 4)).build().extend(field);
+            new DateFieldFormatter.Builder().dateMin(LocalDate.of(2019, 2, 4)).build().extend(field);
             field.addValueChangeListener(e -> {
                 Notification.show(e.getValue());
             });
@@ -38,7 +38,7 @@ public class ZenDateFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField field = new TextField("Accepts only Feb 4, 2019");
-            new ZenDateFieldFormatter.Builder().dateMax(LocalDate.of(2019, 2, 4)).dateMin(LocalDate.of(2019, 2, 4)).build()
+            new DateFieldFormatter.Builder().dateMax(LocalDate.of(2019, 2, 4)).dateMin(LocalDate.of(2019, 2, 4)).build()
                     .extend(field);
             return field;
         }
@@ -50,7 +50,7 @@ public class ZenDateFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField field = new TextField("dd.MM.yyyy");
-            new ZenDateFieldFormatter.Builder().datePattern("ddMMyyyy").delimiter(".").build().extend(field);
+            new DateFieldFormatter.Builder().datePattern("ddMMyyyy").delimiter(".").build().extend(field);
             return field;
         }
 
@@ -61,7 +61,7 @@ public class ZenDateFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField field = new TextField("MM-dd-yyyy");
-            new ZenDateFieldFormatter.Builder().datePattern("MMddyyyy").build().extend(field);
+            new DateFieldFormatter.Builder().datePattern("MMddyyyy").build().extend(field);
             return field;
         }
 
@@ -72,7 +72,7 @@ public class ZenDateFieldFormatterUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField field = new TextField("MM-yyyy");
-            new ZenDateFieldFormatter.Builder().datePattern("MMyyyy").build().extend(field);
+            new DateFieldFormatter.Builder().datePattern("MMyyyy").build().extend(field);
             return field;
         }
 

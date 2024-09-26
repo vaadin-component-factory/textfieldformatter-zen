@@ -4,16 +4,16 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.textfield.TextField;
 
 // issue: nothings happening
-public class ZenCSBFNumericAndPrefixUI extends AbstractTest {
+public class CSBFNumericAndPrefixUI extends AbstractTest {
 
     @Override
     public Component getTestComponent(UITestConfiguration configuration) {
         TextField tf = new TextField();
-        ZenCustomStringBlockFormatter.Options fmtOptions = new ZenCustomStringBlockFormatter.Options();
+        CustomStringBlockFormatter.Options fmtOptions = new CustomStringBlockFormatter.Options();
         fmtOptions.setBlocks(7, 10); // todo prefix won't work without calling setBlocks but it should
         fmtOptions.setNumericOnly(true);
         fmtOptions.setPrefix("PREFIX:");
-        ZenCustomStringBlockFormatter formatter = new ZenCustomStringBlockFormatter(fmtOptions);
+        CustomStringBlockFormatter formatter = new CustomStringBlockFormatter(fmtOptions);
         formatter.extend(tf);
         return tf;
     }

@@ -4,8 +4,8 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
 
-@RouteParams({ ZenBasicIBANFormatterUsageUI.BasicIBAN.class, ZenBasicIBANFormatterUsageUI.ReplaceIBAN.class })
-public class ZenBasicIBANFormatterUsageUI extends AbstractTest {
+@RouteParams({ BasicIBANFormatterUsageUI.BasicIBAN.class, BasicIBANFormatterUsageUI.ReplaceIBAN.class })
+public class BasicIBANFormatterUsageUI extends AbstractTest {
 
     @Override
     public Component getTestComponent(UITestConfiguration configuration) {
@@ -17,7 +17,7 @@ public class ZenBasicIBANFormatterUsageUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            ZenIBANFormatter.fromIBANLength(18).extend(tf);
+            IBANFormatter.fromIBANLength(18).extend(tf);
             tf.addValueChangeListener(l -> Notification.show("Value: " + l.getValue()));
             return tf;
         }
@@ -29,10 +29,10 @@ public class ZenBasicIBANFormatterUsageUI extends AbstractTest {
         @Override
         public Component getTestComponent() {
             TextField tf = new TextField();
-            ZenIBANFormatter formatter = ZenIBANFormatter.fromIBANLength(18);
+            IBANFormatter formatter = IBANFormatter.fromIBANLength(18);
             formatter.extend(tf);
             formatter.remove();
-            ZenIBANFormatter.fromIBANLength(22).extend(tf);
+            IBANFormatter.fromIBANLength(22).extend(tf);
             return tf;
         }
 

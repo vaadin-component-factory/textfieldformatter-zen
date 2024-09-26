@@ -3,21 +3,21 @@ package org.vaadin.formatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.vaadin.formatter.conf.CleaveZenExtension;
+import org.vaadin.formatter.conf.CleaveExtension;
 import org.vaadin.formatter.conf.FormatCreditCardOptions;
 
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.textfield.TextField;
 
-public class ZenCreditCardFieldFormatter extends CleaveZenExtension<FormatCreditCardOptions> {
+public class CreditCardFieldFormatter extends CleaveExtension<FormatCreditCardOptions> {
 
 	private final List<CreditCardChangedListener> listeners = new ArrayList<>();
 
-	public ZenCreditCardFieldFormatter() {
+	public CreditCardFieldFormatter() {
 		this(false);
 	}
 
-	public ZenCreditCardFieldFormatter(boolean support19DigitPAN) {
+	public CreditCardFieldFormatter(boolean support19DigitPAN) {
 		getConfiguration().creditCardStrictMode = support19DigitPAN;
 	}
 
@@ -45,7 +45,7 @@ public class ZenCreditCardFieldFormatter extends CleaveZenExtension<FormatCredit
 		final CreditCardType cardType = (type != null) ? CreditCardType.valueOf(type.toUpperCase())
 				: CreditCardType.UNKNOWN;
 		listeners
-				.forEach(l -> l.creditCardChanged(new CreditCardChangedEvent(ZenCreditCardFieldFormatter.this, cardType)));
+				.forEach(l -> l.creditCardChanged(new CreditCardChangedEvent(CreditCardFieldFormatter.this, cardType)));
 	}
 
 	public void removeCreditCardChangedListener(CreditCardChangedListener listener) {
@@ -58,9 +58,9 @@ public class ZenCreditCardFieldFormatter extends CleaveZenExtension<FormatCredit
 
 	public class CreditCardChangedEvent {
 		private final CreditCardType creditCardType;
-		private final ZenCreditCardFieldFormatter source;
+		private final CreditCardFieldFormatter source;
 
-		public CreditCardChangedEvent(ZenCreditCardFieldFormatter source, CreditCardType creditCardType) {
+		public CreditCardChangedEvent(CreditCardFieldFormatter source, CreditCardType creditCardType) {
 			this.source = source;
 			this.creditCardType = creditCardType;
 		}
@@ -69,7 +69,7 @@ public class ZenCreditCardFieldFormatter extends CleaveZenExtension<FormatCredit
 			return creditCardType;
 		}
 
-		public ZenCreditCardFieldFormatter getSource() {
+		public CreditCardFieldFormatter getSource() {
 			return source;
 		}
 	}

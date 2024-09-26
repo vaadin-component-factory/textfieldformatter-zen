@@ -14,13 +14,13 @@ import com.vaadin.flow.shared.Registration;
 @Tag("textfield-formatter")
 @NpmPackage(value = "cleave-zen", version = "0.0.17")
 @JsModule("./textfield-formatter.ts")
-public abstract class CleaveZenExtension<CONF extends AbstractCleaveZenConfiguration> extends Component {
+public abstract class CleaveExtension<CONF extends AbstractCleaveConfiguration> extends Component {
 
 	private WeakReference<Component> extended;
 	private CONF configuration;
 	private Registration attachRegistration = null;
 
-	public CleaveZenExtension() {
+	public CleaveExtension() {
 	}
 
 	protected void extend(Component component) {

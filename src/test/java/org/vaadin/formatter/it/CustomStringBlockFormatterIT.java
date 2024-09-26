@@ -5,13 +5,13 @@ import com.vaadin.flow.component.textfield.testbench.TextFieldElement;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.vaadin.formatter.ZenBasicIBANFormatterUsageUI;
-import org.vaadin.formatter.ZenCSBFDelimitersUI;
-import org.vaadin.formatter.ZenCSBFNumericAndPrefixUI;
-import org.vaadin.formatter.ZenCSBFNumericAndPrefixWithBlocksUI;
-import org.vaadin.formatter.ZenCSBFNumericAndPrefixWithBuilderUI;
-import org.vaadin.formatter.ZenCSBFNumericOnlyUI;
-import org.vaadin.formatter.ZenCSBFReplacingMaskUI;
+import org.vaadin.formatter.BasicIBANFormatterUsageUI;
+import org.vaadin.formatter.CSBFDelimitersUI;
+import org.vaadin.formatter.CSBFNumericAndPrefixUI;
+import org.vaadin.formatter.CSBFNumericAndPrefixWithBlocksUI;
+import org.vaadin.formatter.CSBFNumericAndPrefixWithBuilderUI;
+import org.vaadin.formatter.CSBFNumericOnlyUI;
+import org.vaadin.formatter.CSBFReplacingMaskUI;
 
 public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCase {
 
@@ -22,7 +22,7 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void basicIban() throws InterruptedException {
-		openUI(ZenBasicIBANFormatterUsageUI.class, ZenBasicIBANFormatterUsageUI.BasicIBAN.class);
+		openUI(BasicIBANFormatterUsageUI.class, BasicIBANFormatterUsageUI.BasicIBAN.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("FI42500015100000231");
 		Assert.assertEquals("FI42 5000 1510 0000 23", tf.getValue());
@@ -30,7 +30,7 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void replaceIbanFormatter() throws InterruptedException {
-		openUI(ZenBasicIBANFormatterUsageUI.class, ZenBasicIBANFormatterUsageUI.ReplaceIBAN.class);
+		openUI(BasicIBANFormatterUsageUI.class, BasicIBANFormatterUsageUI.ReplaceIBAN.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("FI425000151000002319999");
 		Assert.assertEquals("FI42 5000 1510 0000 2319 99", tf.getValue());
@@ -39,7 +39,7 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 	@Test
 	public void customBlockWithDelimiters() throws InterruptedException {
 
-		openUI(ZenCSBFDelimitersUI.class);
+		openUI(CSBFDelimitersUI.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("12233k");
 		Assert.assertEquals("1-22-33k", tf.getValue());
@@ -48,7 +48,7 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 	@Test
 	public void customBlockWithDelimitersNumericOnly() throws InterruptedException {
 
-		openUI(ZenCSBFNumericOnlyUI.class);
+		openUI(CSBFNumericOnlyUI.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("12233k");
 		Assert.assertEquals("1-22*33", tf.getValue());
@@ -56,7 +56,7 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void customBlockWithReplacingMask() throws InterruptedException {
-		openUI(ZenCSBFReplacingMaskUI.class);
+		openUI(CSBFReplacingMaskUI.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("12233abcd");
 		Assert.assertEquals("1-22-33A", tf.getValue());
@@ -69,7 +69,7 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void customBlocksWithNumericAndPrefixBlocks() throws InterruptedException {
-		openUI(ZenCSBFNumericAndPrefixWithBlocksUI.class);
+		openUI(CSBFNumericAndPrefixWithBlocksUI.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		Assert.assertEquals("PREFIX: ", tf.getValue());
 		tf.sendKeys("1234bbbbb");
@@ -78,7 +78,7 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void customBlocksWithNumericAndPrefixWithBuilder() throws InterruptedException {
-		openUI(ZenCSBFNumericAndPrefixWithBuilderUI.class);
+		openUI(CSBFNumericAndPrefixWithBuilderUI.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		Assert.assertEquals("PREFIX: ", tf.getValue());
 		tf.sendKeys("1234bbbbb");
@@ -87,7 +87,7 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void customBlocksWithNumericAndPrefix() throws InterruptedException {
-		openUI(ZenCSBFNumericAndPrefixUI.class);
+		openUI(CSBFNumericAndPrefixUI.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		Assert.assertEquals("PREFIX:", tf.getValue());
 		tf.sendKeys("1234bbbbb");
@@ -96,7 +96,7 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void customBlocksWithLazyDelimiter() throws InterruptedException {
-		openUI(ZenCSBFDelimitersUI.class, ZenCSBFDelimitersUI.LazyDelimiter.class);
+		openUI(CSBFDelimitersUI.class, CSBFDelimitersUI.LazyDelimiter.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("1");
 		Assert.assertEquals("1", tf.getValue());

@@ -6,7 +6,7 @@ import elemental.json.Json;
 import elemental.json.JsonArray;
 import elemental.json.JsonObject;
 
-public abstract class AbstractCleaveZenConfiguration {
+public abstract class AbstractCleaveConfiguration {
 
     protected abstract String getFormatType();
 

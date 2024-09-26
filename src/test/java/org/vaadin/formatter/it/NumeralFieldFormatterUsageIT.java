@@ -4,7 +4,7 @@ import com.vaadin.flow.component.textfield.testbench.TextFieldElement;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.vaadin.formatter.ZenNumeralFieldFormatterUI;
+import org.vaadin.formatter.NumeralFieldFormatterUI;
 
 public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCase {
 
@@ -15,7 +15,7 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void numeralFieldWithDefaultValues() throws InterruptedException {
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.DefaultValues.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.DefaultValues.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("12345.80");
 		Assert.assertEquals("12,345.80", tf.getValue());
@@ -23,7 +23,7 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void numeralFieldWithCustomValues() throws InterruptedException {
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.CustomValue.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.CustomValue.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("-12345,801");
 		Assert.assertEquals("-€12 345,801", tf.getValue());
@@ -31,22 +31,22 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void numeralFieldWithThousandsGroupStyle() throws InterruptedException {
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.ThousandsGroupThousand.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.ThousandsGroupThousand.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("1234567.89");
 		Assert.assertEquals("1,234,567.89", tf.getValue());
 
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.ThousandsGroupWan.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.ThousandsGroupWan.class);
 		tf = $(TextFieldElement.class).first();
 		tf.sendKeys("1234567.89");
 		Assert.assertEquals("123,4567.89", tf.getValue());
 
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.ThousandsGroupLakh.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.ThousandsGroupLakh.class);
 		tf = $(TextFieldElement.class).first();
 		tf.sendKeys("1234567.89");
 		Assert.assertEquals("12,34,567.89", tf.getValue());
 
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.ThousandsGroupNone.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.ThousandsGroupNone.class);
 		tf = $(TextFieldElement.class).first();
 		tf.sendKeys("1234567.89");
 		Assert.assertEquals("1234567.89", tf.getValue());
@@ -54,7 +54,7 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void numeralFieldWithIntegerScale() throws InterruptedException {
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.IntegerScale.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.IntegerScale.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("-123456.789");
 		Assert.assertEquals("-12,345.78", tf.getValue());
@@ -62,7 +62,7 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void numeralFieldWithDecimalScale() throws InterruptedException {
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.DecimalScale.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.DecimalScale.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("-12345,6789012");
 		Assert.assertEquals("-12.345,678901", tf.getValue());
@@ -70,7 +70,7 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void numeralFieldWithDecimalMark() throws InterruptedException {
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.DecimalMark.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.DecimalMark.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("1,2");
 		Assert.assertEquals("1,2", tf.getValue());
@@ -78,7 +78,7 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void numeralFieldWithPositiveOnly() throws InterruptedException {
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.PositiveOnly.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.PositiveOnly.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("-12.34");
 		Assert.assertEquals("12.34", tf.getValue());
@@ -86,7 +86,7 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void numeralFieldWithSignBeforePrefix() throws InterruptedException {
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.SignBeforePrefix.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.SignBeforePrefix.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("-123.45");
 		Assert.assertEquals("-€123.45", tf.getValue());
@@ -94,7 +94,7 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void numeralFieldWithPostfix() throws InterruptedException {
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.Postfix.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.Postfix.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("-123.45");
 		Assert.assertEquals("-123.45€", tf.getValue());
@@ -102,7 +102,7 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 
 	@Test
 	public void numeralFieldWithStripLeadingZeroes() throws InterruptedException {
-		openUI(ZenNumeralFieldFormatterUI.class, ZenNumeralFieldFormatterUI.DontStripLeadingZeroes.class);
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.DontStripLeadingZeroes.class);
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("001.23");
 		Assert.assertEquals("001.23", tf.getValue());

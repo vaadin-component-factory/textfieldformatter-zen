@@ -26,22 +26,25 @@ public class MainView extends HorizontalLayout implements RouterLayout {
 		setSizeFull();
 		add(menu);
 
-		for (RouteData route : RouteConfiguration.forApplicationScope().getAvailableRoutes()) {
-			Class<? extends Component> target = route.getNavigationTarget();
-			RouteParams routeParams = target.getAnnotation(RouteParams.class);
-			if (routeParams != null) {
-				for (Class<? extends UITestConfiguration> configuration : routeParams.value()) {
-					String param = configuration.getSimpleName();
-					String paramLegible = UITestConfiguration.getName(configuration);
-					String url = RouteConfiguration.forApplicationScope().getUrl(route.getNavigationTarget());
-					Anchor link = new Anchor(url + "/" + param, url + "/" + paramLegible);
-					link.getElement().setAttribute("router-link", true);
-					menu.add(link);
+		RouteConfiguration.forApplicationScope().getAvailableRoutes().stream()
+			.filter(route -> route.getNavigationTarget() != AbstractTest.class && route.getNavigationTarget() != MainView.class)
+			.forEach(route -> {
+				Class<? extends Component> target = route.getNavigationTarget();
+				RouteParams routeParams = target.getAnnotation(RouteParams.class);
+				if (routeParams != null) {
+					for (Class<? extends UITestConfiguration> configuration : routeParams.value()) {
+						String param = configuration.getSimpleName();
+						String paramLegible = UITestConfiguration.getName(configuration);
+						String url = RouteConfiguration.forApplicationScope().getUrl(route.getNavigationTarget());
+						Anchor link = new Anchor(url + "/" + param, route.getNavigationTarget().getSimpleName() + " -> " + paramLegible);
+						link.getElement().setAttribute("router-link", true);
+						menu.add(link);
+					}
+				} else {
+					if (route.getNavigationTarget() != AbstractTest.class)
+						menu.add(new RouterLink(route.getNavigationTarget().getSimpleName(), route.getNavigationTarget()));
 				}
-			} else {
-				menu.add(new RouterLink(route.getNavigationTarget().getSimpleName(), route.getNavigationTarget()));
-			}
-		}
+			});
 	}
 
 	@Override
