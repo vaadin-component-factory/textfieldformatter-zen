@@ -15,7 +15,6 @@
     "@vaadin/vaadin-themable-mixin": "24.4.2",
     "@vaadin/vaadin-usage-statistics": "2.1.2",
     "cleave-zen": "0.0.17",
-    "cleave.js": "1.6.0",
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
     "lit": "3.1.4",
@@ -63,7 +62,6 @@
     "date-fns": "$date-fns",
     "@vaadin/vaadin-themable-mixin": "$@vaadin/vaadin-themable-mixin",
     "@vaadin/vaadin-lumo-styles": "$@vaadin/vaadin-lumo-styles",
-    "cleave.js": "$cleave.js",
     "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles"
   },
   "vaadin": {
@@ -81,7 +79,6 @@
       "@vaadin/vaadin-themable-mixin": "24.4.2",
       "@vaadin/vaadin-usage-statistics": "2.1.2",
       "cleave-zen": "0.0.17",
-      "cleave.js": "1.6.0",
       "construct-style-sheets-polyfill": "3.1.0",
       "date-fns": "2.29.3",
       "lit": "3.1.4",
@@ -109,6 +106,6 @@
       "workbox-core": "7.1.0",
       "workbox-precaching": "7.1.0"
     },
-    "hash": "e82f3888ad0b3b23ab423dfee6ba47fa8581ffdb691bdeeb3af0c5e3a546e557"
+    "hash": "14f89a607925c236c5bcc059c9f77be87a60281ff65f5fdb78a50dd7fbd97304"
   }
 }
