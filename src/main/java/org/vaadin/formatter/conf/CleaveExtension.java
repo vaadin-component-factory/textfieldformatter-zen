@@ -1,7 +1,10 @@
 package org.vaadin.formatter.conf;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
@@ -19,6 +22,7 @@ public abstract class CleaveExtension<CONF extends AbstractCleaveConfiguration> 
 	private WeakReference<Component> extended;
 	private CONF configuration;
 	private Registration attachRegistration = null;
+	private final List<PasteOverflowListener> pasteOverflowListeners = new ArrayList<>();
 
 	public CleaveExtension() {
 	}
@@ -69,4 +73,49 @@ public abstract class CleaveExtension<CONF extends AbstractCleaveConfiguration> 
 		return configuration;
 	}
 	protected abstract CONF createDefaultConfiguration();
+
+	// ===========================================
+	// Paste Overflow Event
+	// ===========================================
+
+	@ClientCallable
+	public void onPasteOverflow(String originalValue, String formattedValue) {
+		pasteOverflowListeners.forEach(l -> l.onPasteOverflow(new PasteOverflowEvent(this, originalValue, formattedValue)));
+	}
+
+	public void addPasteOverflowListener(PasteOverflowListener listener) {
+		pasteOverflowListeners.add(listener);
+	}
+
+	public void removePasteOverflowListener(PasteOverflowListener listener) {
+		pasteOverflowListeners.remove(listener);
+	}
+
+	public interface PasteOverflowListener {
+		void onPasteOverflow(PasteOverflowEvent event);
+	}
+
+	public static class PasteOverflowEvent {
+		private final String originalValue;
+		private final String formattedValue;
+		private final CleaveExtension<?> source;
+
+		public PasteOverflowEvent(CleaveExtension<?> source, String originalValue, String formattedValue) {
+			this.source = source;
+			this.originalValue = originalValue;
+			this.formattedValue = formattedValue;
+		}
+
+		public CleaveExtension<?> getSource() {
+			return source;
+		}
+
+		public String getOriginalValue() {
+			return originalValue;
+		}
+
+		public String getFormattedValue() {
+			return formattedValue;
+		}
+	}
 }

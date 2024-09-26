@@ -106,6 +106,25 @@ class TextfieldFormatter extends HTMLElement {
     if (formattedValue) {
       this.el!.value = formattedValue;
     }
+
+    this.checkForPasteOverflow(e, value, formattedValue);
+  }
+
+  checkForPasteOverflow(e: Event, value: string, formattedValue: string) {
+    if (!(e instanceof InputEvent))
+      return;
+
+    if ((e as InputEvent).inputType != 'insertFromPaste')
+      return;
+
+    console.log(this.logPrefix + "insertFromPaste event");
+
+    // if the original value was truncated then notify the server
+    if (value.length > formattedValue.length
+        || (value.length == formattedValue.length && value !== formattedValue)) {
+      console.log(this.logPrefix + "Truncated input detected");
+      (this as any).$server.onPasteOverflow(value, formattedValue);
+    }
   }
 
   notifyVaadinComponentOfChange = (e: Event) => {
