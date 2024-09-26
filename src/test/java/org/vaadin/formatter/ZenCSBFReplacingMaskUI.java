@@ -2,10 +2,9 @@ package org.vaadin.formatter;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import org.vaadin.textfieldformatter.AbstractTest;
-import org.vaadin.textfieldformatter.UITestConfiguration;
 
 public class ZenCSBFReplacingMaskUI extends AbstractTest {
 
@@ -27,7 +26,9 @@ public class ZenCSBFReplacingMaskUI extends AbstractTest {
         Button toggleButton = new Button("SWITCH", event -> replaceFormatter());
         toggleButton.setId("switch");
 
-        layout.add(textField, toggleButton);
+        Button showValueBtn = new Button("Show Server Value", e -> Notification.show("Value: " + textField.getValue()));
+
+        layout.add(textField, toggleButton, showValueBtn);
         return layout;
     }
 

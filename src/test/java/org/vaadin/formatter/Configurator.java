@@ -1,4 +1,4 @@
-package org.vaadin.textfieldformatter;
+package org.vaadin.formatter;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;

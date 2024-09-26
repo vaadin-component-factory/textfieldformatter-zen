@@ -1,4 +1,4 @@
-package org.vaadin.textfieldformatter;
+package org.vaadin.formatter;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

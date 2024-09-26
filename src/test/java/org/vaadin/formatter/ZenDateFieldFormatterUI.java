@@ -4,9 +4,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
 import org.vaadin.formatter.ZenDateFieldFormatterUI.*;
-import org.vaadin.textfieldformatter.AbstractTest;
-import org.vaadin.textfieldformatter.RouteParams;
-import org.vaadin.textfieldformatter.UITestConfiguration;
 
 import java.time.LocalDate;
 

@@ -4,7 +4,6 @@ import com.vaadin.flow.component.button.testbench.ButtonElement;
 import com.vaadin.flow.component.textfield.testbench.TextFieldElement;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.vaadin.formatter.ZenBasicIBANFormatterUsageUI;
 import org.vaadin.formatter.ZenCSBFDelimitersUI;
@@ -13,14 +12,6 @@ import org.vaadin.formatter.ZenCSBFNumericAndPrefixWithBlocksUI;
 import org.vaadin.formatter.ZenCSBFNumericAndPrefixWithBuilderUI;
 import org.vaadin.formatter.ZenCSBFNumericOnlyUI;
 import org.vaadin.formatter.ZenCSBFReplacingMaskUI;
-import org.vaadin.textfieldformatter.BasicIBANFormatterUsageUI;
-import org.vaadin.textfieldformatter.CSBFDelimitersUI;
-import org.vaadin.textfieldformatter.CSBFNumericAndPrefixUI;
-import org.vaadin.textfieldformatter.CSBFNumericAndPrefixWithBlocksUI;
-import org.vaadin.textfieldformatter.CSBFNumericAndPrefixWithBuilderUI;
-import org.vaadin.textfieldformatter.CSBFNumericOnlyUI;
-import org.vaadin.textfieldformatter.CSBFReplacingMaskUI;
-import org.vaadin.textfieldformatter.SetValueUI;
 
 public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCase {
 
@@ -111,15 +102,5 @@ public class CustomStringBlockFormatterIT extends AbstractCustomTestBenchTestCas
 		Assert.assertEquals("1", tf.getValue());
 		tf.sendKeys("2");
 		Assert.assertEquals("1-2", tf.getValue());
-	}
-
-	@Test
-	@Ignore("Hacky fix for setValue broke with Vaadin TextField 2.1.2")
-	public void withSetValue() throws InterruptedException {
-		openUI(SetValueUI.class);
-		ButtonElement btn = $(ButtonElement.class).first();
-		btn.click();
-		TextFieldElement tf = $(TextFieldElement.class).first();
-		Assert.assertEquals("A-BB-CCC", tf.getValue());
 	}
 }

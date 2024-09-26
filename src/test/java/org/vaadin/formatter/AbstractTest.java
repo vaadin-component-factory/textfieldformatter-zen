@@ -1,4 +1,4 @@
-package org.vaadin.textfieldformatter;
+package org.vaadin.formatter;
 
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.button.Button;

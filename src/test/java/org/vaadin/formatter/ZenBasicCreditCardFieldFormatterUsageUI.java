@@ -3,8 +3,6 @@ package org.vaadin.formatter;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextField;
-import org.vaadin.textfieldformatter.AbstractTest;
-import org.vaadin.textfieldformatter.UITestConfiguration;
 
 public class ZenBasicCreditCardFieldFormatterUsageUI extends AbstractTest {
 

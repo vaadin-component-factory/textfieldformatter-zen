@@ -7,8 +7,8 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.vaadin.textfieldformatter.AbstractTest;
-import org.vaadin.textfieldformatter.UITestConfiguration;
+import org.vaadin.formatter.AbstractTest;
+import org.vaadin.formatter.UITestConfiguration;
 
 public abstract class AbstractCustomTestBenchTestCase extends TestBenchTestCase {
 	protected static final int TESTPORT = 8080;

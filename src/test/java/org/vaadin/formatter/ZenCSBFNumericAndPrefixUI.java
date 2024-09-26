@@ -2,8 +2,6 @@ package org.vaadin.formatter;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.textfield.TextField;
-import org.vaadin.textfieldformatter.AbstractTest;
-import org.vaadin.textfieldformatter.UITestConfiguration;
 
 // issue: nothings happening
 public class ZenCSBFNumericAndPrefixUI extends AbstractTest {

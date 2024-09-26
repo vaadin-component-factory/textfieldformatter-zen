@@ -5,9 +5,6 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import org.vaadin.formatter.ZenNumeralFieldFormatterUI.*;
-import org.vaadin.textfieldformatter.AbstractTest;
-import org.vaadin.textfieldformatter.RouteParams;
-import org.vaadin.textfieldformatter.UITestConfiguration;
 
 @RouteParams({ DefaultValues.class, CustomValue.class, ThousandsGroupThousand.class, ThousandsGroupLakh.class,
         ThousandsGroupWan.class, ThousandsGroupNone.class, IntegerScale.class, DecimalScale.class, DecimalMark.class,
