@@ -1,5 +1,7 @@
 package org.vaadin.formatter.it;
 
+import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.button.testbench.ButtonElement;
 import com.vaadin.flow.component.textfield.testbench.TextFieldElement;
 import org.junit.Assert;
 import org.junit.Before;
@@ -106,5 +108,62 @@ public class NumeralFieldFormatterUsageIT extends AbstractCustomTestBenchTestCas
 		TextFieldElement tf = $(TextFieldElement.class).first();
 		tf.sendKeys("001.23");
 		Assert.assertEquals("001.23", tf.getValue());
+	}
+
+	@Test
+	public void numeralFieldWithGermanMoneyFormat() throws InterruptedException {
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.GermanMoneyFormat.class);
+		TextFieldElement tf = $(TextFieldElement.class).first();
+		tf.sendKeys("123456789,123456");
+		Assert.assertEquals("123.456.789,12€", tf.getValue());
+	}
+
+	@Test
+	public void numeralFieldWithLeadingZeros() throws InterruptedException {
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.AddLeadingZeroForDecimal.class);
+		TextFieldElement tf = $(TextFieldElement.class).first();
+		tf.sendKeys(",12");
+
+		// we need to blur because this example uses server-side logic and only happens after value is sent to server
+		$(ButtonElement.class).first().focus();
+		getCommandExecutor().waitForVaadin();
+
+		Assert.assertEquals("0,12€", tf.getValue());
+	}
+
+	@Test
+	public void numeralFieldWithAlwaysShownDecimal() throws InterruptedException {
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.AlwaysDisplayDecimal.class);
+		TextFieldElement tf = $(TextFieldElement.class).first();
+
+		tf.sendKeys("123");
+		// we need to blur because this example uses server-side logic and only happens after value is sent to server
+		$(ButtonElement.class).first().focus();
+		getCommandExecutor().waitForVaadin();
+		Assert.assertEquals("123,00", tf.getValue());
+
+		tf.setValue("");
+		tf.sendKeys("123,1");
+		$(ButtonElement.class).first().focus();
+		getCommandExecutor().waitForVaadin();
+		Assert.assertEquals("123,10", tf.getValue());
+	}
+
+	@Test
+	public void numeralFieldWithAlwaysShownDecimalWithSuffix() throws InterruptedException {
+		openUI(NumeralFieldFormatterUI.class, NumeralFieldFormatterUI.AlwaysDisplayDecimalWithSuffix.class);
+		TextFieldElement tf = $(TextFieldElement.class).first();
+
+		tf.sendKeys("123");
+		// we need to blur because this example uses server-side logic and only happens after value is sent to server
+		$(ButtonElement.class).first().focus();
+		getCommandExecutor().waitForVaadin();
+		Assert.assertEquals("123,00€", tf.getValue());
+
+		tf.setValue("");
+		tf.sendKeys("123,1");
+		$(ButtonElement.class).first().focus();
+		getCommandExecutor().waitForVaadin();
+		Assert.assertEquals("123,10€", tf.getValue());
 	}
 }

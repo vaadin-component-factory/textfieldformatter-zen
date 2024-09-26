@@ -240,6 +240,61 @@ public class NumeralFieldFormatterUI extends AbstractTest {
             // define properties needed for config and server side event
             String decimalMark = ",";
             int decimalScale = 2;
+
+            TextField tf = new TextField();
+            new NumeralFieldFormatter.Builder()
+                    .decimalMark(decimalMark)
+                    .decimalScale(decimalScale)
+                    .delimiter(".")
+                    .thousandsGroupStyle(NumeralFieldFormatter.ThousandsGroupStyle.THOUSAND)
+                    .stripLeadingZeroes(false)
+                    .build().extend(tf);
+
+            // cleave doesn't support always displaying x number of decimal places (filling them with zeros)
+            // so this is an example of doing it on the server side
+            // note: this can get very messy when you have prefixes, suffixes or any other formatting
+            tf.addValueChangeListener(e -> {
+                if (StringUtils.isEmpty(e.getValue()))
+                    return;
+
+                String formattedValue = e.getValue();
+                int decimalIndex = StringUtils.indexOf(formattedValue, decimalMark);
+
+                // add decimal mark if needed
+                if (decimalIndex < 0) {
+                    formattedValue += decimalMark;
+                    decimalIndex = StringUtils.indexOf(formattedValue, decimalMark);
+                }
+
+                // figure out how many zeros we need to append
+                int numExistingDigitsAfterDecimal = StringUtils.substring(formattedValue, decimalIndex+1).replaceAll("[^0-9]", "").length();
+                int numMissingDigits = decimalScale - numExistingDigitsAfterDecimal;
+
+                // add as many trailing 0s as needed
+                String zeros = IntStream.range(0, numMissingDigits)
+                                .mapToObj(i -> "0")
+                                .collect(Collectors.joining(""));
+                formattedValue += zeros;
+
+                // if our value has changed, update the component
+                if (!StringUtils.equals(e.getValue(), formattedValue)) {
+                    e.getSource().setValue(formattedValue);
+                }
+            });
+
+            return tf;
+        }
+
+    }
+
+    public static class AlwaysDisplayDecimalWithSuffix extends UITestConfiguration {
+
+        @Override
+        public Component getTestComponent() {
+
+            // define properties needed for config and server side event
+            String decimalMark = ",";
+            int decimalScale = 2;
             String suffix = "€";
 
             TextField tf = new TextField();
@@ -252,9 +307,8 @@ public class NumeralFieldFormatterUI extends AbstractTest {
                     .prefix(suffix, true)
                     .build().extend(tf);
 
-            // cleave doesn't support always displaying x number of decimal places (filling them with zeros)
-            // so this is a very conveluted example of doing it on the server side
-            // note: this can get very messy when you have prefixes, suffixes or any other formatting
+            // same server-side example as in the prev test (AlwaysDisplayDecimal), except this takes into
+            // consideration the suffix
             tf.addValueChangeListener(e -> {
                 if (StringUtils.isEmpty(e.getValue()))
                     return;
@@ -265,7 +319,6 @@ public class NumeralFieldFormatterUI extends AbstractTest {
                 }
 
                 String formattedValue = e.getValue();
-
                 int decimalIndex = StringUtils.indexOf(formattedValue, decimalMark);
 
                 // add decimal symbol if needed
@@ -279,6 +332,7 @@ public class NumeralFieldFormatterUI extends AbstractTest {
                     decimalIndex = StringUtils.indexOf(formattedValue, decimalMark);
                 }
 
+                // figure out how many zeros are needed
                 int numExistingDigitsAfterDecimal = StringUtils.substring(formattedValue, decimalIndex+1).replaceAll("[^0-9]", "").length();
                 int numMissingDigits = decimalScale - numExistingDigitsAfterDecimal;
 
@@ -288,6 +342,7 @@ public class NumeralFieldFormatterUI extends AbstractTest {
                         .mapToObj(i -> "0")
                         .collect(Collectors.joining(""));
 
+                // insert zeros before suffix
                 formattedValue =
                         StringUtils.substring(formattedValue, 0, decimalIndex + numExistingDigitsAfterDecimal + 1)
                         + zeros
