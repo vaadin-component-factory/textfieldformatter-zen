@@ -61,6 +61,7 @@ public abstract class AbstractTest extends VerticalLayout implements HasUrlParam
 
 		if (component instanceof HasSize) {
 			((HasSize) component).setWidthFull();
+			((HasSize) component).setMaxWidth("300px");
 		}
 
 		if (component instanceof HasValue) {
