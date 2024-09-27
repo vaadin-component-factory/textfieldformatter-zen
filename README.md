@@ -23,17 +23,25 @@ are supported out of the box:
 - Date / Time formatting
 - Custom delimiter, prefix and blocks pattern
 
+## Directory structure
+- `cleave-zen-formatter`: add-on source code project
+- `cleavev-zen-formatter-demo`: demo + integrated tests project
+
 ## Development instructions
 
-Build the project and install the add-on locally:
+Install artifacts locally by running a clean install in the root directory:
 ```
 mvn clean install
 ```
 
-### Running the demo/test application
-1. Import this maven project to your favourite IDE
-2. Run `mvn -Pdevelopment jetty:run`, 
+### Running the demo application
+1. From the `cleave-zen-formatter-demo` directory, run `mvn spring-boot:run` 
+2. Alternatively, you can run the `Application.java` class from your IDE
 3. Navigate to http://localhost:8080
+
+### Running the integration tests application
+1. Make sure the demo app is running (see previous section)
+2. From the `cleave-zen-formatter-demo` directory, use your IDE to run the tests under `src/test/` directory
 
 ## How to use it
 
