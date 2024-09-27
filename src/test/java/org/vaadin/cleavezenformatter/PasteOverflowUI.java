@@ -23,9 +23,6 @@ public class PasteOverflowUI extends AbstractTest {
                     "FormattedValue[" + e.getFormattedValue() + "]");
         });
         formatter.extend(tf);
-
-
-
         return tf;
     }
 

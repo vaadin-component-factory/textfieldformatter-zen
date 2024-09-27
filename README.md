@@ -40,7 +40,9 @@ mvn clean install
 The best place to find examples of usage is by viewing the demo application in the test directory.
 Below are a few basic examples to give and high-level view of how the API works.
 
-### Numeric formatting
+### Formatting
+
+#### Numeric formatting
 
 ```java
 // 1234567.12-> $1,234,567.12
@@ -68,7 +70,7 @@ new NumeralFieldFormatter.Builder()
 add(tf);
 ```
 
-### IBAN formatting
+#### IBAN formatting
 
 123412341234 -> 1234 1234 1234
 
@@ -78,7 +80,7 @@ IBANFormatter.fromIBANLength(12).extend(tf);
 add(tf);
 ```
 
-### Credit card formatting
+#### Credit card formatting
 
 ```java
 TextField tf = new TextField();
@@ -87,9 +89,49 @@ tf.setPlaceholder("Insert credit card number");
 CreditCardFieldFormatter formatter = new CreditCardFieldFormatter();
 formatter.extend(tf);
 
-// library will notify when type of card changes (eg: VISA)
+// library will notify when type of card changes (eg: VISA, MASTERCARD, etc)
 formatter.addCreditCardChangedListener(l -> Notification.show("" + l.getCreditCardType()));
 
+add(tf);
+```
+
+### Paste overflow event
+
+If the user pastes a value into a TextField and the original value is truncated when the formatting is applied, 
+a `PaseteOverflowEvent` is fired on the server-side. This can be useful if you want to notify the user that their
+original input is not fully included in the final formatted value. This event can be listened for by adding a 
+listener to any formatter.
+
+```java
+TextField tf = new TextField();
+tf.setHelperText("Max of 4 characters. Pasting a string longer than 4 characters will result in a notification.");
+
+// limit field to 4 characters
+CustomStringBlockFormatter.Options fmtOptions = new CustomStringBlockFormatter.Options();
+fmtOptions.setBlocks(4);
+
+// listen for overflow event
+CustomStringBlockFormatter formatter = new CustomStringBlockFormatter(fmtOptions);
+formatter.addPasteOverflowListener(e -> {
+    Notification.show("Paste Overflow Event: " +
+            "OriginalValue[" + e.getOriginalValue() + "] " +
+            "FormattedValue[" + e.getFormattedValue() + "]");
+});
+formatter.extend(tf);
+add(tf);
+```
+
+### Credit card type change event
+
+When using a credit card formatter, the type of credit card is automatically detected. When a change occurs, a 
+`CreditCardChangedEvent` is fired on the server-side. This event can be listened for by adding a listener to 
+the credit card formatter.
+
+```java
+TextField tf = new TextField();
+CreditCardFieldFormatter formatter = new CreditCardFieldFormatter();
+formatter.extend(tf);
+formatter.addCreditCardChangedListener(e -> Notification.show("Credit card type: " + e.getCreditCardType()));
 add(tf);
 ```
 
