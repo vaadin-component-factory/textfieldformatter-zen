@@ -82,7 +82,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.vaadin.addons</groupId>
+            <groupId>org.vaadin.addons.componentfactory</groupId>
             <artifactId>cleave-zen-formatter</artifactId>
             <version>1.0.0</version>
         </dependency>
