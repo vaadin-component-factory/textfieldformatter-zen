@@ -23,18 +23,6 @@ are supported out of the box:
 - Date / Time formatting
 - Custom delimiter, prefix and blocks pattern
 
-## Development instructions
-
-Build the project and install the add-on locally:
-```
-mvn clean install
-```
-
-### Running the demo/test application
-1. Import this maven project to your favourite IDE
-2. Run `mvn -Pdevelopment jetty:run`, 
-3. Navigate to http://localhost:8080
-
 ## How to use it
 
 The best place to find examples of usage is by viewing the demo application in the test directory.
@@ -134,6 +122,29 @@ formatter.extend(tf);
 formatter.addCreditCardChangedListener(e -> Notification.show("Credit card type: " + e.getCreditCardType()));
 add(tf);
 ```
+## Development instructions
+
+The following contains information for both developing the add-on source, as well as running the demo app.
+
+### Directory structure
+- `cleave-zen-formatter`: add-on source code project
+- `cleavev-zen-formatter-demo`: demo + integrated tests project
+
+### Build and install
+
+Install artifacts locally by running a clean install in the root directory:
+```
+mvn clean install
+```
+
+### Running the demo application
+1. From the `cleave-zen-formatter-demo` directory, run `mvn spring-boot:run`
+2. Alternatively, you can run the `Application.java` class from your IDE
+3. Navigate to http://localhost:8080
+
+### Running the integration tests application
+1. Make sure the demo app is running (see previous section)
+2. From the `cleave-zen-formatter-demo` directory, use your IDE to run the tests under `src/test/` directory
 
 ## Missing features or bugs
 

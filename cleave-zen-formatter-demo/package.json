@@ -5,7 +5,6 @@
     "@polymer/polymer": "3.5.1",
     "@vaadin/bundles": "24.4.2",
     "@vaadin/common-frontend": "0.0.19",
-    "@vaadin/cookie-consent": "24.4.2",
     "@vaadin/polymer-legacy-adapter": "24.4.2",
     "@vaadin/react-components": "24.4.2",
     "@vaadin/router": "1.7.5",
@@ -58,7 +57,6 @@
     "@polymer/polymer": "$@polymer/polymer",
     "react": "$react",
     "cleave-zen": "$cleave-zen",
-    "@vaadin/cookie-consent": "$@vaadin/cookie-consent",
     "date-fns": "$date-fns",
     "@vaadin/vaadin-themable-mixin": "$@vaadin/vaadin-themable-mixin",
     "@vaadin/vaadin-lumo-styles": "$@vaadin/vaadin-lumo-styles",
@@ -69,7 +67,6 @@
       "@polymer/polymer": "3.5.1",
       "@vaadin/bundles": "24.4.2",
       "@vaadin/common-frontend": "0.0.19",
-      "@vaadin/cookie-consent": "24.4.2",
       "@vaadin/polymer-legacy-adapter": "24.4.2",
       "@vaadin/react-components": "24.4.2",
       "@vaadin/router": "1.7.5",
@@ -106,6 +103,6 @@
       "workbox-core": "7.1.0",
       "workbox-precaching": "7.1.0"
     },
-    "hash": "14f89a607925c236c5bcc059c9f77be87a60281ff65f5fdb78a50dd7fbd97304"
+    "hash": "41264a7dfba8779b1961f95dab441169ceb0b469f1fb1dbc38545deb8b9ec4fa"
   }
 }
