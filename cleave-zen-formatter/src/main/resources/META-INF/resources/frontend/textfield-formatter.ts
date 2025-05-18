@@ -9,17 +9,20 @@ import {
   getCreditCardType,
   unformatCreditCard
 } from 'cleave-zen';
+
+import parsePhoneNumber, {CountryCode} from 'libphonenumber-js';
+
 import { registerCursorTracker, DefaultCreditCardDelimiter } from 'cleave-zen';
 
 const getDelimiterRegexByDelimiter = (delimiter: string): RegExp =>
     new RegExp(delimiter.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1'), 'g')
 
 const stripDelimiters = (
-                                  value : string,
-                                  current : DelimiterType): string => {
-    current.split('').forEach(letter => {
-      value = value.replace(getDelimiterRegexByDelimiter(letter), '')
-    })
+    value : string,
+    current : DelimiterType): string => {
+  current.split('').forEach(letter => {
+    value = value.replace(getDelimiterRegexByDelimiter(letter), '')
+  })
 
   return value
 }
@@ -37,7 +40,7 @@ class TextfieldFormatter extends HTMLElement {
   private valueChangeEvent: string = 'input';
   private cursorTracker?: CursorTrackerDestructor;
   private el?: HTMLInputElement | null = null; // input element
-  private formatType: 'creditCard' | 'general' | 'numeral' | 'date'  | 'time' = 'creditCard';
+  private formatType: 'creditCard' | 'general' | 'numeral' | 'date'  | 'time'| 'phone' = 'creditCard';
 
   connectedCallback() {
     console.log(this.logPrefix + "connectedCallback");
@@ -150,8 +153,21 @@ class TextfieldFormatter extends HTMLElement {
       case "time":
         formattedValue = formatTime(value, this.configuration);
         break;
+      case "phone":
+        formattedValue = this.formatPhone(value, this.configuration);
+        break;
     }
     return formattedValue;
+  }
+
+  private formatPhone(value: string, configuration:any):string {
+    debugger;
+    const phoneNumber = parsePhoneNumber(value, configuration.country as CountryCode);
+    if (configuration.formatNational as boolean) {
+      return phoneNumber.formatNational();
+    } else {
+      return phoneNumber.formatInternational();
+    }
   }
 
   private inputValueChanged = (e: Event) => {
@@ -165,7 +181,7 @@ class TextfieldFormatter extends HTMLElement {
     }
   };
 
-  updateConf(configuration: any, formatType: 'creditCard' | 'general' | 'numeral' | 'date'  | 'time') {
+  updateConf(configuration: any, formatType: 'creditCard' | 'general' | 'numeral' | 'date'  | 'time' | 'phone') {
     console.log(this.logPrefix + 'updateConf'); console.log(formatType); console.log(configuration);
     this.formatType = formatType;
     this.configuration = configuration;
