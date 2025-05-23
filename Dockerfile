@@ -15,7 +15,7 @@ RUN ./mvnw clean test package -Pproduction
 
 # The "Run" stage. Start with a clean image, and copy over just the app itself, omitting gradle, npm and any intermediate build files.
 FROM eclipse-temurin:17
-COPY --from=BUILD /app/cleave-zen-formatter-demo/target/cleave-zen-formatter-demo-1.0.0.jar /app/
+COPY --from=BUILD /app/cleave-zen-formatter-demo/target/cleave-zen-formatter-demo-*.jar /app/cleave-zen-formatter-demo.jar
 WORKDIR /app/
 EXPOSE 8080
-ENTRYPOINT java -jar cleave-zen-formatter-demo-1.0.0.jar 8080
+ENTRYPOINT java -jar cleave-zen-formatter-demo.jar 8080
