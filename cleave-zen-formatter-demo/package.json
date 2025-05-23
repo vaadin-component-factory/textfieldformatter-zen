@@ -16,6 +16,7 @@
     "cleave-zen": "0.0.17",
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.29.3",
+    "libphonenumber-js": "1.12.8",
     "lit": "3.1.4",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -60,7 +61,8 @@
     "date-fns": "$date-fns",
     "@vaadin/vaadin-themable-mixin": "$@vaadin/vaadin-themable-mixin",
     "@vaadin/vaadin-lumo-styles": "$@vaadin/vaadin-lumo-styles",
-    "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles"
+    "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles",
+    "libphonenumber-js": "$libphonenumber-js"
   },
   "vaadin": {
     "dependencies": {
@@ -78,6 +80,7 @@
       "cleave-zen": "0.0.17",
       "construct-style-sheets-polyfill": "3.1.0",
       "date-fns": "2.29.3",
+      "libphonenumber-js": "1.12.8",
       "lit": "3.1.4",
       "react": "18.3.1",
       "react-dom": "18.3.1",
@@ -103,6 +106,6 @@
       "workbox-core": "7.1.0",
       "workbox-precaching": "7.1.0"
     },
-    "hash": "abddc7250757b1d79055816367b5acc46067c2fa122b43f20332be3d512bf3d7"
+    "hash": "3b95fbc664e8d8adb0f8d448dd9d2fddd9f24796bf02bcbfc087602c29756601"
   }
 }

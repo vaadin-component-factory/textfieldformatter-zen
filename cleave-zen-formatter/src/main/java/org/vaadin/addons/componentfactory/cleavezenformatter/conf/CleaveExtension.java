@@ -16,6 +16,7 @@ import com.vaadin.flow.shared.Registration;
 
 @Tag("textfield-formatter")
 @NpmPackage(value = "cleave-zen", version = "0.0.17")
+@NpmPackage(value = "libphonenumber-js", version = "1.12.8")
 @JsModule("./textfield-formatter.ts")
 public abstract class CleaveExtension<CONF extends AbstractCleaveConfiguration> extends Component {
 

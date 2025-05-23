@@ -6,7 +6,7 @@
 
     <groupId>org.vaadin.addons.componentfactory</groupId>
     <artifactId>cleave-zen-formatter</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>Cleave Zen TextField Formatter</name>
@@ -103,29 +103,6 @@
 
     <build>
         <plugins>
-            <!-- todo enable license plugin? -->
-<!--            <plugin>-->
-<!--                <groupId>org.codehaus.mojo</groupId>-->
-<!--                <artifactId>license-maven-plugin</artifactId>-->
-<!--                <version>2.0.0</version>-->
-<!--                &lt;!&ndash;  Use `mvn license:update-file-header` to fix header problems &ndash;&gt;-->
-<!--                <configuration>-->
-<!--                    <licenseName>apache_v2</licenseName>-->
-<!--                    <includes>-->
-<!--                        <include>**/main/**/*.java</include>-->
-<!--                    </includes>-->
-<!--                    <failOnMissingHeader>true</failOnMissingHeader>-->
-<!--                    <failOnNotUptodateHeader>true</failOnNotUptodateHeader>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>check-file-header</goal>-->
-<!--                        </goals>-->
-<!--                        <phase>process-sources</phase>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
