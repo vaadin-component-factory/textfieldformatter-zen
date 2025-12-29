@@ -1,7 +1,6 @@
 package org.vaadin.addons.componentfactory.cleavezenformatter.conf;
 
-import elemental.json.Json;
-import elemental.json.JsonObject;
+import tools.jackson.databind.JsonNode;
 
 public class FormatNumeralOptions extends AbstractCleaveConfiguration {
 
@@ -17,8 +16,8 @@ public class FormatNumeralOptions extends AbstractCleaveConfiguration {
     public String prefix;
     public Boolean tailPrefix;
 
-    protected JsonObject toJson() {
-        JsonObject json = Json.createObject();
+    protected JsonNode toJson() {
+        var json = factory.objectNode();
         ifNotNull(delimiter, value -> json.put("delimiter", value));
         ifNotNull(prefix, value -> json.put("prefix", value));
         ifNotNull(tailPrefix, value -> json.put("tailPrefix", value));

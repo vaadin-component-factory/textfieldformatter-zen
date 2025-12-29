@@ -4,7 +4,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import org.apache.commons.lang3.StringUtils;
 import org.vaadin.addons.componentfactory.cleavezenformatter.NumeralFieldFormatterUI.AddLeadingZeroForDecimal;
 import org.vaadin.addons.componentfactory.cleavezenformatter.NumeralFieldFormatterUI.AlwaysDisplayDecimal;
 import org.vaadin.addons.componentfactory.cleavezenformatter.NumeralFieldFormatterUI.CustomValue;
@@ -219,9 +218,9 @@ public class NumeralFieldFormatterUI extends AbstractTest {
             // cleave does not support adding the zero in front, so we'll do it from the server side
             // note: this can get very messy when you have prefixes, suffixes or any other formatting
             tf.addValueChangeListener(e -> {
-               if (StringUtils.isEmpty(e.getValue()))
+               if (e.getValue().isEmpty())
                    return;
-               if (StringUtils.indexOf(e.getValue(), decimalMark) == 0) {
+               if (e.getValue().indexOf(decimalMark) == 0) {
                    e.getSource().setValue("0" + e.getValue());
                }
             });
@@ -253,20 +252,19 @@ public class NumeralFieldFormatterUI extends AbstractTest {
             // so this is an example of doing it on the server side
             // note: this can get very messy when you have prefixes, suffixes or any other formatting
             tf.addValueChangeListener(e -> {
-                if (StringUtils.isEmpty(e.getValue()))
+                if (e.getValue().isEmpty())
                     return;
 
                 String formattedValue = e.getValue();
-                int decimalIndex = StringUtils.indexOf(formattedValue, decimalMark);
-
+                int decimalIndex = formattedValue.indexOf(decimalMark);
                 // add decimal mark if needed
                 if (decimalIndex < 0) {
                     formattedValue += decimalMark;
-                    decimalIndex = StringUtils.indexOf(formattedValue, decimalMark);
+                    decimalIndex = formattedValue.indexOf(decimalMark);
                 }
 
                 // figure out how many zeros we need to append
-                int numExistingDigitsAfterDecimal = StringUtils.substring(formattedValue, decimalIndex+1).replaceAll("[^0-9]", "").length();
+                int numExistingDigitsAfterDecimal = formattedValue.substring(decimalIndex+1).replaceAll("[^0-9]", "").length();
                 int numMissingDigits = decimalScale - numExistingDigitsAfterDecimal;
 
                 // add as many trailing 0s as needed
@@ -276,7 +274,7 @@ public class NumeralFieldFormatterUI extends AbstractTest {
                 formattedValue += zeros;
 
                 // if our value has changed, update the component
-                if (!StringUtils.equals(e.getValue(), formattedValue)) {
+                if (!e.getValue().equals(formattedValue)) {
                     e.getSource().setValue(formattedValue);
                 }
             });
@@ -309,7 +307,7 @@ public class NumeralFieldFormatterUI extends AbstractTest {
             // same server-side example as in the prev test (AlwaysDisplayDecimal), except this takes into
             // consideration the suffix
             tf.addValueChangeListener(e -> {
-                if (StringUtils.isEmpty(e.getValue()))
+                if (e.getValue().isEmpty())
                     return;
 
                 // do nothing if value contains no digits
@@ -318,21 +316,21 @@ public class NumeralFieldFormatterUI extends AbstractTest {
                 }
 
                 String formattedValue = e.getValue();
-                int decimalIndex = StringUtils.indexOf(formattedValue, decimalMark);
+                int decimalIndex = formattedValue.indexOf(decimalMark);
 
                 // add decimal symbol if needed
                 if (decimalIndex < 0) {
 
                     // if we contain a suffix, add decimal mark before it
-                    if (StringUtils.contains(formattedValue, suffix)) {
-                        formattedValue = StringUtils.substring(formattedValue, 0, formattedValue.length() - suffix.length()) + decimalMark + suffix;
+                    if (formattedValue.contains(suffix)) {
+                        formattedValue = formattedValue.substring(0, formattedValue.length() - suffix.length()) + decimalMark + suffix;
                     }
 
-                    decimalIndex = StringUtils.indexOf(formattedValue, decimalMark);
+                    decimalIndex = formattedValue.indexOf(decimalMark);
                 }
 
                 // figure out how many zeros are needed
-                int numExistingDigitsAfterDecimal = StringUtils.substring(formattedValue, decimalIndex+1).replaceAll("[^0-9]", "").length();
+                int numExistingDigitsAfterDecimal = formattedValue.substring(decimalIndex+1).replaceAll("[^0-9]", "").length();
                 int numMissingDigits = decimalScale - numExistingDigitsAfterDecimal;
 
                 // add as many trailing 0s as needed to make 2 decimal digits
@@ -343,12 +341,12 @@ public class NumeralFieldFormatterUI extends AbstractTest {
 
                 // insert zeros before suffix
                 formattedValue =
-                        StringUtils.substring(formattedValue, 0, decimalIndex + numExistingDigitsAfterDecimal + 1)
+                        formattedValue.substring(0, decimalIndex + numExistingDigitsAfterDecimal + 1)
                         + zeros
-                        + StringUtils.substring(formattedValue, -suffix.length());
+                        + formattedValue.substring(formattedValue.length() - suffix.length());
 
                 // if our value has changed, update the component
-                if (!StringUtils.equals(e.getValue(), formattedValue)) {
+                if (!e.getValue().equals(formattedValue)) {
                     e.getSource().setValue(formattedValue);
                 }
             });

@@ -1,15 +1,15 @@
 package org.vaadin.addons.componentfactory.cleavezenformatter.conf;
 
-import elemental.json.Json;
-import elemental.json.JsonObject;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
 
 public class FormatCreditCardOptions extends AbstractCleaveConfiguration {
     public Boolean creditCardStrictMode;
     public String delimiter;
     public Boolean delimiterLazyShow;
 
-    protected JsonObject toJson() {
-        JsonObject json = Json.createObject();
+    protected JsonNode toJson() {
+        ObjectNode json = factory.objectNode();
         ifNotNull(creditCardStrictMode, value -> json.put("strictMode", value));
         ifNotNull(delimiter, value -> json.put("delimiter", value));
         ifNotNull(delimiterLazyShow, value -> json.put("delimiterLazyShow", value));

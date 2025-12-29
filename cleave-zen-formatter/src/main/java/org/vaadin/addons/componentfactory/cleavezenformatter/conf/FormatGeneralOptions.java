@@ -1,7 +1,6 @@
 package org.vaadin.addons.componentfactory.cleavezenformatter.conf;
 
-import elemental.json.Json;
-import elemental.json.JsonObject;
+import tools.jackson.databind.JsonNode;
 
 public class FormatGeneralOptions extends AbstractCleaveConfiguration {
 
@@ -14,11 +13,11 @@ public class FormatGeneralOptions extends AbstractCleaveConfiguration {
     public Boolean numericOnly;
     public String prefix;
 
-    protected JsonObject toJson() {
-        JsonObject json = Json.createObject();
+    protected JsonNode toJson() {
+        var json = factory.objectNode();
         ifNotNull(delimiter, value -> json.put("delimiter", value));
-        ifNotNullArray(blocks, value -> json.put("blocks", value));
-        ifNotNullArray(delimiters, value -> json.put("delimiters", value));
+        ifNotNullArray(blocks, value -> json.set("blocks", value));
+        ifNotNullArray(delimiters, value -> json.set("delimiters", value));
         ifNotNull(delimiterLazyShow, value -> json.put("delimiterLazyShow", value));
         ifNotNull(uppercase, value -> json.put("uppercase", value));
         ifNotNull(lowercase, value -> json.put("lowercase", value));

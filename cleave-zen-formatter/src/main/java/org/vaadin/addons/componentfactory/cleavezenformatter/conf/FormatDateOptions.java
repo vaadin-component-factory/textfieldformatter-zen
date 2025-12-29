@@ -1,7 +1,6 @@
 package org.vaadin.addons.componentfactory.cleavezenformatter.conf;
 
-import elemental.json.Json;
-import elemental.json.JsonObject;
+import tools.jackson.databind.JsonNode;
 
 public class FormatDateOptions extends AbstractCleaveConfiguration {
 
@@ -11,11 +10,11 @@ public class FormatDateOptions extends AbstractCleaveConfiguration {
     public String delimiter;
     public Boolean delimiterLazyShow;
 
-    protected JsonObject toJson() {
-        JsonObject json = Json.createObject();
+    protected JsonNode toJson() {
+        var json = factory.objectNode();
         ifNotNull(delimiter, value -> json.put("delimiter", value));
         ifNotNull(delimiterLazyShow, value -> json.put("delimiterLazyShow", value));
-        ifNotNullArray(datePattern, value -> json.put("datePattern", value));
+        ifNotNullArray(datePattern, value -> json.set("datePattern", value));
         ifNotNull(dateMax, value -> json.put("dateMax", value));
         ifNotNull(dateMin, value -> json.put("dateMin", value));
 

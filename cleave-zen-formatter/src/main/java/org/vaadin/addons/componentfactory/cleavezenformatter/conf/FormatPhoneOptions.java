@@ -1,15 +1,14 @@
 package org.vaadin.addons.componentfactory.cleavezenformatter.conf;
 
-import elemental.json.Json;
-import elemental.json.JsonObject;
+import tools.jackson.databind.JsonNode;
 
 public class FormatPhoneOptions extends AbstractCleaveConfiguration {
 
     public String country;
     public boolean formatNational;
 
-    protected JsonObject toJson() {
-        JsonObject json = Json.createObject();
+    protected JsonNode toJson() {
+        var json = factory.objectNode();
         ifNotNull(country, value -> json.put("country", value));
         ifNotNull(formatNational, value -> json.put("formatNational", formatNational));
         return json;

@@ -2,37 +2,38 @@ package org.vaadin.addons.componentfactory.cleavezenformatter.conf;
 
 import java.util.function.Consumer;
 
-import elemental.json.Json;
-import elemental.json.JsonArray;
-import elemental.json.JsonObject;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.JsonNodeFactory;
 
 public abstract class AbstractCleaveConfiguration {
 
     protected abstract String getFormatType();
+    static protected JsonNodeFactory factory = new JsonNodeFactory();
 
-    protected abstract JsonObject toJson();
-
+    protected abstract JsonNode toJson();
+    
     protected  <T> void ifNotNull(T value, Consumer<T> put) {
         if (value != null) {
             put.accept(value);
         }
     }
 
-    protected void ifNotNullArray(int[] value, Consumer<JsonArray> put) {
+    protected void ifNotNullArray(int[] value, Consumer<ArrayNode> put) {
         if (value != null) {
-            JsonArray array = Json.createArray();
+            var array = factory.arrayNode(value.length);
             for (int i = 0; i < value.length; i++) {
-                array.set(i, value[i]);
+                array.add(value[i]);
             }
             put.accept(array);
         }
     }
 
-    protected void ifNotNullArray(String[] value, Consumer<JsonArray> put) {
+    protected void ifNotNullArray(String[] value, Consumer<ArrayNode> put) {
         if (value != null) {
-            JsonArray array = Json.createArray();
+            var array = factory.arrayNode(value.length);
             for (int i = 0; i < value.length; i++) {
-                array.set(i, value[i]);
+                array.add(value[i]);
             }
             put.accept(array);
         }
